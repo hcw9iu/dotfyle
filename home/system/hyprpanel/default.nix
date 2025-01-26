@@ -29,7 +29,6 @@ in {
   imports = [ inputs.hyprpanel.homeManagerModules.hyprpanel ];
 
 
-  #remove battery
   programs.hyprpanel = {
     enable = true;
     hyprland.enable = true;
@@ -41,12 +40,26 @@ in {
           "left" = [ "dashboard" "workspaces" "windowtitle" ];
           "middle" = [ "media" ];
           "right" = [
-            "systray"
+            #"systray"
             "volume"
             "bluetooth"
+            #"battery"
             "network"
             "clock"
             "notifications"
+          ];
+        };
+        "1" = {
+        "left" = [ "dashboard" "workspaces" "windowtitle" ];
+        "middle" = [ "media" ];
+        "right" = [
+          #"systray"
+          "volume"
+          "bluetooth"
+          #"battery"
+          "network"
+          "clock"
+          "notifications"
           ];
         };
       };
@@ -87,6 +100,7 @@ in {
       "bar.bluetooth.label" = false;
       "bar.clock.format" = "%a %b %d  %I:%M %p";
       "bar.notifications.show_total" = true;
+
       "theme.notification.border_radius" = "${toString rounding}px";
       "theme.osd.enable" = true;
       "theme.osd.orientation" = "vertical";
