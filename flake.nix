@@ -2,6 +2,7 @@
   description = ''
     NixOS config by hcw
   '';
+  nixConfig.license = "BSD-3-Clause";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable"; 
