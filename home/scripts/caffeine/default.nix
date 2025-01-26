@@ -20,11 +20,11 @@ let
     if [[ $(pidof "hypridle") ]]; then
       systemctl --user stop hypridle.service
       title="󰅶  Caffeine Activated"
-      description="Caffeine is now active! Your screen will not turn off automatically."
+      description="Caffeine is now active!\nYour screen will not turn off automatically."
     else
       systemctl --user start hypridle.service
       title="󰾪  Caffeine Deactivated"
-      description="Caffeine is now deactivated! Your screen will turn off automatically."
+      description="Caffeine is now deactivated!\nYour screen will turn off automatically."
     fi
 
     notif "caffeine" "$title" "$description"
