@@ -1,4 +1,5 @@
 { pkgs, inputs, ... }: {
+
   stylix = {
     enable = true;
 
@@ -54,8 +55,8 @@
       };
       sizes = {
         applications = 14;
-        desktop = 15;
-        popups = 15;
+        desktop = 16;
+        popups = 20;
         terminal = 13;
       };
     };
