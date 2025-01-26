@@ -22,7 +22,7 @@
     #hyprpanel.url = "github:Jas-SinghFSU/HyprPanel"; # fork
     #stylix.url = "github:danth/stylix"; # fork
 
-    # FIXED COMMIT
+    # ANCHORED COMMIT
     sops-nix = {
       url = "github:hcw9iu/sops-nix"; # fork
       inputs.nixpkgs.follows = "nixpkgs";
