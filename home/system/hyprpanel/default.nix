@@ -28,6 +28,8 @@ in {
 
   imports = [ inputs.hyprpanel.homeManagerModules.hyprpanel ];
 
+
+  #remove battery
   programs.hyprpanel = {
     enable = true;
     hyprland.enable = true;
@@ -42,7 +44,6 @@ in {
             "systray"
             "volume"
             "bluetooth"
-            "battery"
             "network"
             "clock"
             "notifications"
@@ -78,7 +79,7 @@ in {
       "bar.launcher.icon" = "";
       "theme.bar.transparent" = "${if transparent then "true" else "false"}";
       "bar.workspaces.show_numbered" = false;
-      "bar.workspaces.workspaces" = 5;
+      "bar.workspaces.workspaces" = 8;
       "bar.workspaces.hideUnoccupied" = false;
       "bar.windowtitle.label" = true;
       "bar.volume.label" = false;
@@ -181,7 +182,7 @@ in {
       "bar.workspaces.applicationIconEmptyWorkspace" = "";
       "bar.workspaces.showApplicationIcons" = true;
       "bar.workspaces.showWsIcons" = true;
-      "theme.bar.dropdownGap" = "4.5em";
+      "theme.bar.dropdownGap" = "4.0em";
     };
   };
 }
