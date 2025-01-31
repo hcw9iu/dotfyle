@@ -6,6 +6,7 @@
     ../../nixos/nvidia.nix # CHANGEME: Remove this line if you don't have an Nvidia GPU
     #../../nixos/prime.nix # for multiple GPUs (Nvidia + others) 
 
+    ../../nixos/attic.nix
     ../../nixos/audio.nix
     ../../nixos/auto-upgrade.nix
     ../../nixos/bluetooth.nix

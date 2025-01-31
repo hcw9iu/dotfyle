@@ -22,6 +22,12 @@
     #hyprpanel.url = "github:Jas-SinghFSU/HyprPanel"; # fork
     #stylix.url = "github:danth/stylix"; # fork
 
+    # atticd
+    attic = {
+      url = "github:zhaofengli/attic";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # ANCHORED COMMIT
     sops-nix = {
       url = "github:hcw9iu/sops-nix"; # fork
@@ -74,19 +80,33 @@
       ref = "main";
       allRefs = true;
     };
+    atticConf = {
+      url = "path:/BD/cache/config";
+      flake = false;
+    };
   };
 
-  outputs = inputs@{ nixpkgs, cursor, ... }: {
+  outputs = inputs@{ nixpkgs, cursor, attic, ... }: {
     nixosConfigurations = {
       nixos = # CHANGEME: This should match the 'hostname' in your variables.nix file
         nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
+          specialArgs = { inherit inputs; }; # for attic
           modules = [
             {
-              nixpkgs.overlays =
-                [ inputs.hyprpanel.overlay inputs.nur.overlays.default ];
+              nixpkgs.overlays = [ 
+                inputs.hyprpanel.overlay 
+                inputs.nur.overlays.default
+                inputs.attic.overlays.default # for attic 
+              ];
               _module.args = { inherit inputs; };
             }  
+            ({ pkgs, inputs, ... }: {
+              environment.systemPackages = [ 
+                #pkgs.attic 
+                inputs.attic.packages.${pkgs.system}.attic # for attic
+              ];
+            })
             ({ pkgs, ... }: {
               environment.systemPackages = [
               cursor.packages.${pkgs.system}.default
