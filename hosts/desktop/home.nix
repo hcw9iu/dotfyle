@@ -39,7 +39,7 @@
     ../../home/system/tofi
 
     # Python Packages
-    #../../home/python/base # include pytorch, heavy, do not touch
+    #../../home/python/base # include pytorch
     #../../home/python/audio
     #../../home/python # Handle PYTHONPATH. Put last
 
@@ -67,6 +67,7 @@
       just
       uv
       gh
+      gh-dash
 
       #Rust 
       #rustup 
