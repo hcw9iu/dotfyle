@@ -1,4 +1,6 @@
 # Change log
+## Package log
+[Attic](/docs/attic.md) - cache nix packages
 ## Main folder
 > All settings are in `hosts/desktop` <br>
 Except settings in `home` <br>
