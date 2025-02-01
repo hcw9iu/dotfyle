@@ -62,10 +62,6 @@
     stylix.url = "github:hcw9iu/stylix"; 
 
     apple-fonts.url = "github:Lyndeno/apple-fonts.nix"; 
-    pia = {
-      url = "github:Fuwn/pia.nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   
     zen-browser.url =
       "git+https://git.sr.ht/~canasta/zen-browser-flake/"; 
@@ -116,7 +112,7 @@
             })
             inputs.home-manager.nixosModules.home-manager
             inputs.stylix.nixosModules.stylix
-            inputs.pia.nixosModules."x86_64-linux".default
+            #inputs.pia.nixosModules."x86_64-linux".default
             ./hosts/desktop/configuration.nix # CHANGEME: change the path to match your host folder
           ];
         };

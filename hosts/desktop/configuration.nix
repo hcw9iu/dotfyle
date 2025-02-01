@@ -22,7 +22,7 @@
     ../../nixos/xdg-portal.nix
     ../../nixos/variables-config.nix
     ../../nixos/docker.nix
-    ../../nixos/pia.nix
+    #../../nixos/pia.nix
 
 
     # Choose your theme here
