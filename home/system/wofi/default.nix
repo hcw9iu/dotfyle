@@ -17,13 +17,13 @@ in {
 
     settings = {
       allow_markup = true;
-      width = 450;
+      width = 650;
       show = "drun";
       prompt = "Apps";
       normal_window = true;
       layer = "top";
       term = "foot";
-      height = "305px";
+      height = "402px";
       orientation = "vertical";
       halign = "fill";
       line_wrap = "off";
