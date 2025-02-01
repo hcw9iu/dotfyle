@@ -10,7 +10,7 @@
       "$mod,SPACE, exec, menu" # Launcher
       "$mod,C, exec, quickmenu" # Quickmenu
       "$shiftMod,SPACE, exec, hyprfocus-toggle" # Toggle HyprFocus
-      # "$mod,TAB, overview:toggle" # Overview
+      #"$mod,TAB, overview:toggle" # Overview
 
       "$mod,Q, killactive," # Close window
       "$mod,T, togglefloating," # Toggle Floating
@@ -28,6 +28,8 @@
       ",PRINT, exec, screenshot monitor" # Screenshot monitor
       "$shiftMod,PRINT, exec, screenshot region" # Screenshot region
       "ALT,PRINT, exec, screenshot region swappy" # Screenshot region then edit
+
+      "$mod, TAB, focuscurrentorlast"
 
       "$shiftMod,T, exec, hyprpanel-toggle" # Toggle hyprpanelT
       "$shiftMod,S, exec, ${pkgs.qutebrowser}/bin/qutebrowser :open $(wofi --show dmenu -L 1 -p ' Search on internet')" # Search on internet with wofi

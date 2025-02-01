@@ -15,7 +15,7 @@ in {
     ./animations.nix
     ./bindings.nix
     ./polkitagent.nix
-    # ./hyprspace.nix
+    #./hyprspace.nix
   ];
 
   home.packages = with pkgs; [

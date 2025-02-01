@@ -36,7 +36,7 @@
     hyprspace = { 
       type = "git";
       url = "git+ssh://git@github.com/hcw9iu/Hyprspace"; 
-      ref = "main";
+      #ref = "main";
       }; 
     hyprland = {
       type = "git";

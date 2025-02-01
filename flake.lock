@@ -1171,14 +1171,13 @@
       "locked": {
         "lastModified": 1737810023,
         "narHash": "sha256-Bq3txeKmwyFGU/bvPrCBNa7qo16Y7uzEHxz4vQJlYTA=",
-        "ref": "main",
+        "ref": "7f2e820d8baeaa3d4d80728055a004e88fa96eec",
         "rev": "7f2e820d8baeaa3d4d80728055a004e88fa96eec",
         "revCount": 1,
         "type": "git",
         "url": "git+ssh://git@github.com/hcw9iu/Hyprspace"
       },
       "original": {
-        "ref": "main",
         "type": "git",
         "url": "git+ssh://git@github.com/hcw9iu/Hyprspace"
       }
