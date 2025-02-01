@@ -57,6 +57,7 @@
       bitwarden # Password manager
       vlc # Video player
       #blanket # White-noise app
+      signal-desktop
 
       # Dev
       go
@@ -69,12 +70,13 @@
       gh
       gh-dash
 
-      #Rust 
+      # Rust 
       #rustup 
       rustc
       cargo
 
       # Utils
+      appimage-run
       zip
       unzip
       optipng
