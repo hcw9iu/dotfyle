@@ -62,7 +62,7 @@ in {
       package = nvidiaDriverChannel;
       extraPackages = with pkgs; [
         nvidia-vaapi-driver
-        vappiVdpau
+        vaapiVdpau
         libvdpau-va-gl
         mesa
         egl-wayland

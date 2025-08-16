@@ -5,7 +5,7 @@ in {
     allowUnfree = true;
     allowBroken = true;
     permittedInsecurePackages = [
-      "qrwebkit-5.212.0-alpha4"
+      "qtwebkit-5.212.0-alpha4"
     ];
   };
   nix = {

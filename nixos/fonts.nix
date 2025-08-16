@@ -18,7 +18,7 @@
       #nerd-fonts.fira-code
       #nerd-fonts.meslo-lg
       (pkgs.nerdfonts.override {fonts = ["FiraCode"];})
-      (pkgs.nerdfonts.override {fonts = ["Meslo"]})
+      (pkgs.nerdfonts.override {fonts = ["Meslo"];})
       openmoji-color
       twemoji-color-font
       inputs.apple-fonts.packages.${pkgs.system}.sf-pro-nerd

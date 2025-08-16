@@ -58,7 +58,7 @@
     hyprpanel = {
       #type = "git";
       #url = "git+ssh://git@github.com/hcw9iu/HyprPanel";
-      url = "github:hcw9iu/Hyprpanel/10ac1fbf27e6a06329ef4279846a4aaadf7e332b"
+      url = "github:hcw9iu/Hyprpanel/10ac1fbf27e6a06329ef4279846a4aaadf7e332b";
       #ref = "main"; 
       #rev = "10ac1fbf27e6a06329ef4279846a4aaadf7e332b";
       #allRefs = true;
