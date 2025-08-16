@@ -6,7 +6,7 @@
     ./caffeine
     ./hyprpanel
     ./hyprfocus
-    ./night-shift
+    #./night-shift
     ./screenshot
     ./nerdfont-fzf
     ./notification

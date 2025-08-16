@@ -2,7 +2,8 @@
 {
   programs.eza = {
     enable = true;
-    icons = "auto";
+    #icons = "auto";
+    icons = true;
 
     extraOptions = [
       "--group-directories-first"

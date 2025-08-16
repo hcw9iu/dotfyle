@@ -4,6 +4,9 @@ in {
   nixpkgs.config = {
     allowUnfree = true;
     allowBroken = true;
+    permittedInsecurePackages = [
+      "qrwebkit-5.212.0-alpha4"
+    ];
   };
   nix = {
     nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];

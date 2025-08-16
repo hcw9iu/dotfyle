@@ -44,13 +44,25 @@ in {
       modesetting.enable = true;
       package = nvidiaDriverChannel;
     };
-    graphics = {
+    #graphics = {
+      #enable = true;
+      #package = nvidiaDriverChannel;
+      #enable32Bit = true;
+      #extraPackages = with pkgs; [
+        #nvidia-vaapi-driver
+        #vaapiVdpau
+        #libvdpau-va-gl
+        #mesa
+        #egl-wayland
+      #];
+    #};
+    opengl = {
       enable = true;
+      driSupport32Bit = true;
       package = nvidiaDriverChannel;
-      enable32Bit = true;
       extraPackages = with pkgs; [
         nvidia-vaapi-driver
-        vaapiVdpau
+        vappiVdpau
         libvdpau-va-gl
         mesa
         egl-wayland

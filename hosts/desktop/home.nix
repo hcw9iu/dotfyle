@@ -6,7 +6,7 @@
     # Programs
     ../../home/programs/kitty
     ../../home/programs/nvim
-    ../../home/programs/qutebrowser
+    #../../home/programs/qutebrowser
     ../../home/programs/shell
     ../../home/programs/fetch
     ../../home/programs/git
@@ -16,7 +16,7 @@
     ../../home/programs/markdown
     ../../home/programs/thunar
     ../../home/programs/lazygit
-    ../../home/programs/nh
+    #../../home/programs/nh
     ../../home/programs/zen
     ../../home/programs/server-page
 
