@@ -5,30 +5,29 @@ let
   unstablePkgs = import inputs."nvidia-src" { system = pkgs.system; };
 
   # 560.x 版驅動在 unstable 的 derivation
-  #upstreamDrv = unstablePkgs.linuxPackages_latest.nvidia_x11;
-  upstreamDrv = unstablePkgs.linuxPackages_6_12.nvidiaPackages.stable;
+  upstreamDrv = unstablePkgs.linuxPackages_latest.nvidia_x11-565.77;
+  #upstreamDrv = unstablePkgs.linuxPackages_6_12.nvidiaPackages.stable;
 
 
 
   # 以目前 kernelPackages 為基礎，重新 build 與核心相容的驅動
-  #nvidiaDriverChannel = config.boot.kernelPackages.nvidiaPackages.mkDriver {
-    #version            = upstreamDrv.version;                  # 例：560.42.04
-    #sha256_64bit       = upstreamDrv.src.outputHash;
+  nvidiaDriverChannel = config.boot.kernelPackages.nvidiaPackages.mkDriver {
+    version            = upstreamDrv.version;                  # 例：560.42.04
+    sha256_64bit       = upstreamDrv.src.outputHash;
 
     #settingsSha256     = upstreamDrv.settings.src.outputHash;
-    #persistencedSha256 = upstreamDrv.persistenced.src.outputHash;
+    persistencedSha256 = upstreamDrv.persistenced.src.outputHash;
     #sha256_32bit        = null;
-    #settingsSha256      = null;
-  #};
-  nvidiaDriverChannel =
+  };
+  #nvidiaDriverChannel =
     # config.boot.kernelPackages.nvidiaPackages.latest; # stable, latest, beta, production, etc.
-    config.boot.kernelPackages.nvidiaPackages.mkDriver {
-      version = "565.77"; #stable
-      sha256_64bit       = "0z0lncf3q4ndf16k928vpjrzvc9xgg8h494qcvbk9kvbqi1afyha";
+    #config.boot.kernelPackages.nvidiaPackages.mkDriver {
+      #version = "565.77"; #stable
+      #sha256_64bit       = "0z0lncf3q4ndf16k928vpjrzvc9xgg8h494qcvbk9kvbqi1afyha";
       #settingsSha256     = "0jds62i0pymn1riklkfdhq1jwzip0brhv0qz5kzjqfg5fa7ssism";
-      persistencedSha256 = "031b583hndq5c9c93j6py6yzxhkf08yz9ac16iywf3vx9w5y6w62";
-      sha256_32bit        = null;
-    };
+      #persistencedSha256 = "031b583hndq5c9c93j6py6yzxhkf08yz9ac16iywf3vx9w5y6w62";
+      #sha256_32bit        = null;
+    #};
 in {
   # Load nvidia driver for Xorg and Wayland
   services.xserver.videoDrivers = [ "nvidia" "displayLink" ]; # or "nvidiaLegacy470 etc.
