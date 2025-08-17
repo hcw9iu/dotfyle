@@ -48,7 +48,7 @@ in {
       enable = true;
       wayland.enable = true;
       #theme = "sddm-astronaut-theme";
-      theme = "sddm-astronaut"
+      theme = "sddm-astronaut";
       settings = {
         Wayland.SessionDir = "${
           inputs.hyprland.packages."${pkgs.system}".hyprland
