@@ -8,8 +8,8 @@ let
       #settingsSha256 = "1v8z8c895gvvr2y3974iahjpll8wjimv6w4g4qc9h460qhwc3k2b";
       #persistencedSha256 = "1qpsrmxz3y741qh4x91qbrkkc0x8hnifp7pfrsxmwnwf796r2904";
       sha256_64bit       = "H7uEe34LdmUFcMcS6bz7sbpYhg9zPCb/5AmZZFTz1Qa=";
-      settingsSha256     = "0000000000000000000000000000000000000000000000000000";
-      persistencedSha256 = "0000000000000000000000000000000000000000000000000000";
+      settingsSha256     = "H7uEe34LdmUFcMcS6bz7sbpYhg9zPCb/5AmZZFTz1Qa=";
+      persistencedSha256 = "0000000000000000000000000000000000000000000001111111";
     };
     #nvidiaDriverChannel = pkgs.linuxPackages_latest.nvidiaPackages.latest;
 in {
