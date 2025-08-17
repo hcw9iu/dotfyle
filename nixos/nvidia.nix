@@ -61,7 +61,8 @@ in {
     opengl = {
       enable          = true;
       driSupport32Bit = true;
-      package         = nvidiaDriverChannel;
+      #package         = nvidiaDriverChannel;
+      package         = upstreamDrv;
       extraPackages   = with pkgs; [
         nvidia-vaapi-driver
         vaapiVdpau
