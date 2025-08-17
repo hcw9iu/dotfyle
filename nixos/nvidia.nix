@@ -53,8 +53,8 @@ in {
       nvidiaSettings         = false;
       powerManagement.enable = true;  # May affect sleep/suspend
       modesetting.enable     = true;
-      package                = nvidiaDriverChannel;
-      #package                = upstreamDrv;
+      #package                = nvidiaDriverChannel;
+      package                = upstreamDrv;
     };
 
     opengl = {
