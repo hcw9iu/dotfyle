@@ -18,7 +18,7 @@
       open               = true;          # 使用 Open Kernel Module
       modesetting.enable = true;
       nvidiaSettings     = false;         # 省去 GTK UI
-      package            = pkgs.nvidia-prodn;  # ← overlay 提供的 attrset
+      package            = pkgs.nvidia;  # ← overlay 提供的 attrset
     };
 
     opengl = {
