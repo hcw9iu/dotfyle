@@ -5,6 +5,7 @@ let
     config.boot.kernelPackages.nvidiaPackages.mkDriver {
       version = "565.77"; #stable
       sha256_64bit       = "0z0lncf3q4ndf16k928vpjrzvc9xgg8h494qcvbk9kvbqi1afyha";
+      sha256_32bit       = "0z0lncf3q4ndf16k928vpjrzvc9xgg8h494qcvbk9kvbqi1afyha";
       #settingsSha256     = "0jds62i0pymn1riklkfdhq1jwzip0brhv0qz5kzjqfg5fa7ssism";
       persistencedSha256 = "031b583hndq5c9c93j6py6yzxhkf08yz9ac16iywf3vx9w5y6w62";
     };
