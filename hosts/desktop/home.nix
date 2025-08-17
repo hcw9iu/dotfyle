@@ -69,6 +69,7 @@
       uv
       gh
       gh-dash
+      git
 
       # Rust 
       #rustup 
