@@ -5,7 +5,7 @@ let
   unstablePkgs = import inputs."nvidia-src" { system = pkgs.system; };
 
   # 560 系列 open-kernel 版驅動（OKM）
-  upstreamDrv = unstablePkgs.linuxPackages_latest.nvidiaPackages_560.open;
+  upstreamDrv = unstablePkgs.linuxPackages_6_12.nvidiaPackages_560.open;
 
 in {
   # ---------------------------------------------------------
