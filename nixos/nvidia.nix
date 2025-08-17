@@ -1,7 +1,7 @@
 { lib, pkgs, config, ... }:
 let
   nvidiaDriverChannel =
-    config.boot.kernelPackages.nvidiaPackages.latest; # stable, latest, beta, production, etc.
+    config.boot.kernelPackages.nvidiaPackages.beta; # stable, latest, beta, production, etc.
     #config.boot.kernelPackages.nvidiaPackages.mkDriver {
       #version = "565.77"; #stable
       #sha256_64bit       = "0z0lncf3q4ndf16k928vpjrzvc9xgg8h494qcvbk9kvbqi1afyha";
