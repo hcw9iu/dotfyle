@@ -5,7 +5,7 @@ let
   unstablePkgs = import inputs."nvidia-src" { system = pkgs.system; };
 
   # 560.x 版驅動在 unstable 的 derivation
-  upstreamDrv = unstablePkgs.linuxPackages_6_11.nvidia_x11;
+  upstreamDrv = unstablePkgs.linuxPackages_latest.nvidia_x11;
   #upstreamDrv = unstablePkgs.linuxPackages_6_12.nvidiaPackages.stable;
 
 
