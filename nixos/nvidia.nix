@@ -3,13 +3,13 @@ let
   nvidiaDriverChannel =
     #config.boot.kernelPackages.nvidiaPackages.stable; # stable, latest, beta, production, etc.
     config.boot.kernelPackages.nvidiaPackages.mkDriver {
-      version = "565.57.01";
+      version = "565.77"; #stable
       #sha256_64bit  = "0yic33xx1b3jbgciphlwh6zqfj21vx9439zm0j45wf2yb17fksvf";
       #settingsSha256 = "1v8z8c895gvvr2y3974iahjpll8wjimv6w4g4qc9h460qhwc3k2b";
       #persistencedSha256 = "1qpsrmxz3y741qh4x91qbrkkc0x8hnifp7pfrsxmwnwf796r2904";
-      sha256_64bit       = "H7uEe34LdmUFcMcS6bz7sbpYhg9zPCb/5AmZZFTz1Qa=";
-      settingsSha256     = "H7uEe34LdmUFcMcS6bz7sbpYhg9zPCb/5AmZZFTz1Qa=";
-      persistencedSha256 = "0000000000000000000000000000000000000000000001111111";
+      sha256_64bit       = "0z0lncf3q4ndf16k928vpjrzvc9xgg8h494qcvbk9kvbqi1afyha";
+      settingsSha256     = "1xvs1rjzm7qr6zc6va5xq7a6gdqihld9gwyrc7bh7fk4x5rwas82";
+      persistencedSha256 = "0lv86rnkl76890zkwjjcs85r3r0gg9hb1pidvld6gm9ldrghy8xm";
     };
     #nvidiaDriverChannel = pkgs.linuxPackages_latest.nvidiaPackages.latest;
 in {
