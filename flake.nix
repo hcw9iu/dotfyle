@@ -107,12 +107,12 @@
                 inputs.hyprpanel.overlay 
                 inputs.nur.overlays.default
                 #inputs.attic.overlays.default # for attic 
-                # 引入 560/565 open-kernel NVIDIA 驅動
+                # 引入 570up open-kernel NVIDIA 驅動
                 #(final: prev:
                   #let
                     #up = import inputs."nvidia-src" { system = prev.system; };
                   #in {
-                    #nvidia-open = up.linuxPackages_6_12.nvidiaPackages.production;
+                    #nvidia-open = up.linuxPackages_latest.nvidiaPackages.latest.open;
                   #})
               ];
               _module.args = { inherit inputs; };
