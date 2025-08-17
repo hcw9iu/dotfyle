@@ -45,7 +45,7 @@ in {
   hardware = {
     nvidia = {
       open                   = false;
-      nvidiaSettings         = true;
+      nvidiaSettings         = false;
       powerManagement.enable = true;  # May affect sleep/suspend
       modesetting.enable     = true;
       package                = nvidiaDriverChannel;
@@ -64,4 +64,7 @@ in {
       ];
     };
   };
+  environment.systemPackages = [
+    (import inputs."nvidia-src" { system = pkgs.system; }).nvidia-settings
+  ];
 }
