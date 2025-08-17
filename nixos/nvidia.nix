@@ -2,7 +2,13 @@
 
 let
   # 先匯入 nixos-unstable 的 pkgs，只拿來取得最新版 NVIDIA 原始碼
-  unstablePkgs = import inputs."nvidia-src" { system = pkgs.system; };
+  unstablePkgs = import inputs."nvidia-src" { 
+    system = pkgs.system; 
+    config = {
+      allowUnfree = true;
+      nvidia.acceptLicense = true;
+    };
+  };
 
   # 560.x 版驅動在 unstable 的 derivation
   #upstreamDrv = unstablePkgs.linuxPackages_6_12.nvidia_x11;
