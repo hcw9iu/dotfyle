@@ -11,7 +11,7 @@ let
     nvidiaDriverChannel = pkgs.linuxPackages_latest.nvidiaPackages.latest;
 in {
   # Load nvidia driver for Xorg and Wayland
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  #boot.kernelPackages = pkgs.linuxPackages_latest;
    
   services.xserver.videoDrivers =
     [ "nvidia" "displayLink" ]; # or "nvidiaLegacy470 etc.
