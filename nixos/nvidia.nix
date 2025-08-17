@@ -1,28 +1,67 @@
 { lib, pkgs, config, inputs, ... }:
 
 let
-  # 提取 unstable 裡的驅動版本與下載網址
-  unstableDrv =
-    (import inputs."nvidia-src" { system = pkgs.system; })
-    .linuxPackages_latest.nvidia_x11;
+  # 先匯入 nixos-unstable 的 pkgs，只拿來取得最新版 NVIDIA 原始碼
+  unstablePkgs = import inputs."nvidia-src" { system = pkgs.system; };
 
-  nvidiaDriver = config.boot.kernelPackages.nvidiaPackages.mkDriver {
-    version            = unstableDrv.version;        # 例： "560.42.04"
-    sha256_64bit       = unstableDrv.src.outputHash; # 直接引用現成雜湊
-    settingsSha256     = unstableDrv.settings.src.outputHash;
-    persistencedSha256 = unstableDrv.persistenced.src.outputHash;
+  # 560.x 版驅動在 unstable 的 derivation
+  upstreamDrv = unstablePkgs.linuxPackages_latest.nvidia_x11;
+
+  # 以目前 kernelPackages 為基礎，重新 build 與核心相容的驅動
+  nvidiaDriverChannel = config.boot.kernelPackages.nvidiaPackages.mkDriver {
+    version            = upstreamDrv.version;                  # 例：560.42.04
+    sha256_64bit       = upstreamDrv.src.outputHash;
+    settingsSha256     = upstreamDrv.settings.src.outputHash;
+    persistencedSha256 = upstreamDrv.persistenced.src.outputHash;
   };
 in {
-  services.xserver.videoDrivers = [ "nvidia" ];
-  hardware.nvidia = {
-    package              = nvidiaDriver;  # ← 用自己 build 的 560
-    modesetting.enable   = true;
-    nvidiaSettings       = false;         # GTK 失敗就先關掉；之後可裝 pkgs.nvidia-settings
+  # Load nvidia driver for Xorg and Wayland
+  services.xserver.videoDrivers = [ "nvidia" "displayLink" ]; # or "nvidiaLegacy470 etc.
+
+  boot.kernelParams = lib.optionals (lib.elem "nvidia" config.services.xserver.videoDrivers) [
+    "nvidia-drm.modeset=1"
+    "nvidia_drm.fbdev=1"
+    "nvidia.NVreg_PreserveVideoMemoryAllocations=1"
+  ];
+
+  environment.variables = {
+    # GBM_BACKEND = "nvidia-drm"; # If crash in firefox, remove this line
+    LIBVA_DRIVER_NAME         = "nvidia"; # hardware acceleration
+    __GLX_VENDOR_LIBRARY_NAME = "nvidia";
+    NVD_BACKEND               = "direct";
   };
-  hardware.opengl = {
-    enable          = true;
-    driSupport32Bit = true;
-    package         = nvidiaDriver;
-    extraPackages   = with pkgs; [ egl-wayland ];
+
+  nixpkgs.config = {
+    nvidia.acceptLicense   = true;
+    allowUnfreePredicate = pkg:
+      builtins.elem (lib.getName pkg) [
+        "cudatoolkit"
+        "nvidia-persistenced"
+        "nvidia-settings"
+        "nvidia-x11"
+      ];
+  };
+
+  hardware = {
+    nvidia = {
+      open                   = false;
+      nvidiaSettings         = true;
+      powerManagement.enable = true;  # May affect sleep/suspend
+      modesetting.enable     = true;
+      package                = nvidiaDriverChannel;
+    };
+
+    opengl = {
+      enable          = true;
+      driSupport32Bit = true;
+      package         = nvidiaDriverChannel;
+      extraPackages   = with pkgs; [
+        nvidia-vaapi-driver
+        vaapiVdpau
+        libvdpau-va-gl
+        mesa
+        egl-wayland
+      ];
+    };
   };
 }
