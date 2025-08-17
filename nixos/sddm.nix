@@ -6,7 +6,8 @@
   ...
 }: let
   foreground = config.theme.textColorOnWallpaper;
-  sddm-astronaut = pkgs.sddm-astronaut.override {
+  #sddm-astronaut = pkgs.sddm-astronaut.override {
+  sddmAstronaut = pkgs.libsForQt5.sddm-astronaut.override {
     embeddedTheme = "pixel_sakura";
     themeConfig = {
       HeaderTextColor = "#${foreground}";
@@ -43,10 +44,11 @@ in {
   services.displayManager = {
     sddm = {
       package = pkgs.kdePackages.sddm;
-      extraPackages = [sddm-astronaut];
+      extraPackages = [sddmAstronaut];
       enable = true;
       wayland.enable = true;
-      theme = "sddm-astronaut-theme";
+      #theme = "sddm-astronaut-theme";
+      theme = "sddm-astronaut"
       settings = {
         Wayland.SessionDir = "${
           inputs.hyprland.packages."${pkgs.system}".hyprland
@@ -55,5 +57,5 @@ in {
     };
   };
 
-  environment.systemPackages = [sddm-astronaut];
+  environment.systemPackages = [sddmAstronaut];
 }
