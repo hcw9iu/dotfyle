@@ -16,9 +16,9 @@
     ../../nixos/nix.nix
     ../../nixos/systemd-boot.nix
     ../../nixos/timezone.nix
-    ../../nixos/sddm.nix
+    #../../nixos/sddm.nix
     ../../nixos/hyprland.nix
-    #../../nixos/tuigreet.nix
+    ../../nixos/tuigreet.nix
     ../../nixos/users.nix
     ../../nixos/utils.nix
     ../../nixos/xdg-portal.nix

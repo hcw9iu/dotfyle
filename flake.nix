@@ -5,24 +5,24 @@
   nixConfig.license = "BSD-3-Clause";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs-24_05.url = "github:nixos/nixpkgs/nixos-24.05";
-    #nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable"; 
+    #nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    #nixpkgs-24_05.url = "github:nixos/nixpkgs/nixos-24.05";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05"; 
     nixos-hardware.url = "github:NixOS/nixos-hardware/master"; 
     nur.url = "github:nix-community/NUR";
     home-manager = {
       url = "github:nix-community/home-manager/release-24.05"; 
-      inputs.nixpkgs.follows = "nixpkgs-24_05";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     nixvim = {
       url = "github:nix-community/nixvim"; 
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nvidia-src = {
-      url = "github:nixos/nixpkgs/nixos-unstable";
-      flake = false;
-    };
+    #nvidia-src = {
+      #url = "github:nixos/nixpkgs/nixos-unstable";
+      #flake = false;
+    #};
 
     #hyprspace = { url = "github:KZDKM/Hyprspace"; }; # fork
     #hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1"; # fork
@@ -108,12 +108,12 @@
                 inputs.nur.overlays.default
                 #inputs.attic.overlays.default # for attic 
                 # 引入 560/565 open-kernel NVIDIA 驅動
-                (final: prev:
-                  let
-                    up = import inputs."nvidia-src" { system = prev.system; };
-                  in {
-                    nvidia-open = up.linuxPackages_6_12.nvidiaPackages.production;
-                  })
+                #(final: prev:
+                  #let
+                    #up = import inputs."nvidia-src" { system = prev.system; };
+                  #in {
+                    #nvidia-open = up.linuxPackages_6_12.nvidiaPackages.production;
+                  #})
               ];
               _module.args = { inherit inputs; };
             }  
