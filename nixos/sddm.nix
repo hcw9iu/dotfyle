@@ -9,6 +9,6 @@
   };
 
   environment.systemPackages = with pkgs; [
-    sddm-sugar-dark             # 安裝主題檔
+    pkgs."sddm-sugar-dark"             # 安裝主題檔
   ];
 }
