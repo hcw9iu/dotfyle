@@ -9,7 +9,7 @@ let
   #upstreamDrv = unstablePkgs.linuxPackages_latest.nvidiaPackages.stable;
 
   upstreamDrv = (import inputs."nvidia-src" { system = pkgs.system; })
-                .nvidia_x11_560;
+                .nvidia_x11;
 
   # 以目前 kernelPackages 為基礎，重新 build 與核心相容的驅動
   nvidiaDriverChannel = config.boot.kernelPackages.nvidiaPackages.mkDriver {
