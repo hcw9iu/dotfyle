@@ -44,7 +44,7 @@ in {
 
   hardware = {
     nvidia = {
-      open                   = false;
+      open                   = true;
       nvidiaSettings         = false;
       powerManagement.enable = true;  # May affect sleep/suspend
       modesetting.enable     = true;
