@@ -1,16 +1,18 @@
 { lib, pkgs, config, ... }:
 let
   nvidiaDriverChannel =
-    config.boot.kernelPackages.nvidiaPackages.production; # stable, latest, beta, production, etc.
+    config.boot.kernelPackages.nvidiaPackages.latest; # stable, latest, beta, production, etc.
     #config.boot.kernelPackages.nvidiaPackages.mkDriver {
-    #  version = "565.57.01";
-    #  sha256_64bit  = "0yic33xx1b3jbgciphlwh6zqfj21vx9439zm0j45wf2yb17fksvf";
-    #  settingsSha256 = "1v8z8c895gvvr2y3974iahjpll8wjimv6w4g4qc9h460qhwc3k2b";
-    #  persistencedSha256 = "1qpsrmxz3y741qh4x91qbrkkc0x8hnifp7pfrsxmwnwf796r2904";
-
+      #version = "565.77"; #stable
+      #sha256_64bit       = "0z0lncf3q4ndf16k928vpjrzvc9xgg8h494qcvbk9kvbqi1afyha";
+      #settingsSha256     = "0jds62i0pymn1riklkfdhq1jwzip0brhv0qz5kzjqfg5fa7ssism";
+      #persistencedSha256 = "031b583hndq5c9c93j6py6yzxhkf08yz9ac16iywf3vx9w5y6w62";
     #};
+    #nvidiaDriverChannel = pkgs.linuxPackages_latest.nvidiaPackages.latest;
 in {
   # Load nvidia driver for Xorg and Wayland
+  #boot.kernelPackages = pkgs.linuxPackages_latest;
+   
   services.xserver.videoDrivers =
     [ "nvidia" "displayLink" ]; # or "nvidiaLegacy470 etc.
   boot.kernelParams =

@@ -5,8 +5,8 @@
   nixConfig.license = "BSD-3-Clause";
 
   inputs = {
-    #nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable"; 
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
+    #nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable"; 
     nixos-hardware.url = "github:NixOS/nixos-hardware/master"; 
     nur.url = "github:nix-community/NUR";
     home-manager = {
@@ -17,6 +17,12 @@
       url = "github:nix-community/nixvim"; 
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nvidia-src = {
+      url = "github:nixos/nixpkgs/nixos-unstable";
+      flake = false;
+    };
+    
     #hyprspace = { url = "github:KZDKM/Hyprspace"; }; # fork
     #hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1"; # fork
     #hyprpolkitagent.url = "github:hyprwm/hyprpolkitagent"; # fork
