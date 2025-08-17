@@ -36,6 +36,7 @@ in {
   };
 
   nixpkgs.config = {
+    allowUnfree = true;
     nvidia.acceptLicense   = true;
     allowUnfreePredicate = pkg:
       builtins.elem (lib.getName pkg) [
