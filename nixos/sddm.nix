@@ -5,10 +5,10 @@
   services.displayManager.sddm = {
     enable         = true;          # 開啟 SDDM
     wayland.enable = true;          # 同時支援 Wayland
-    theme          = "sddm-sugar-dark";
+    theme          = "sugar-candy";
   };
 
   environment.systemPackages = with pkgs; [
-    pkgs."sddm-sugar-dark"             # 安裝主題檔
+    pkgs."sddm-sugar-candy"             # 安裝主題檔
   ];
 }
