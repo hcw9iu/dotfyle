@@ -112,7 +112,7 @@
                   let
                     up = import inputs."nvidia-src" { system = prev.system; };
                   in {
-                    nvidia-open = up.linuxPackages_latest.nvidiaPackages.production.open;
+                    nvidia-open = up.linuxPackages_6_12.nvidiaPackages.production;
                   })
               ];
               _module.args = { inherit inputs; };
