@@ -40,7 +40,7 @@ in {
   };
   hardware = {
     nvidia = {
-      open = open;
+      open = true;
       nvidiaSettings = false;
       powerManagement.enable =
         true; # This can cause sleep/suspend to fail and saves entire VRAM to /tmp/
