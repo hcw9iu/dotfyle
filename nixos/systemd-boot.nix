@@ -11,8 +11,8 @@
     };
     tmp.cleanOnBoot = true;
     kernelPackages =
-      pkgs.linuxPackages_6_11; # _zen, _hardened, _rt, _rt_latest, etc.
-      #pkgs.linuxPackages_latest;
+      #pkgs.linuxPackages_6_16; # _zen, _hardened, _rt, _rt_latest, etc.
+      pkgs.linuxPackages_latest;
 
     # Silent boot
     kernelParams = [
