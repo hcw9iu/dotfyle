@@ -19,10 +19,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    #nvidia-src = {
-      #url = "github:nixos/nixpkgs/nixos-unstable";
-      #flake = false;
-    #};
+    nvidia-src = {
+      url = "github:nixos/nixpkgs/nixos-unstable";
+      flake = false;
+    };
 
     #hyprspace = { url = "github:KZDKM/Hyprspace"; }; # fork
     #hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1"; # fork
