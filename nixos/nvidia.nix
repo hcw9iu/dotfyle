@@ -1,6 +1,6 @@
 { lib, pkgs, config, ... }:
 let
-  nvidiaDriverChannel =
+  #nvidiaDriverChannel =
     #config.boot.kernelPackages.nvidiaPackages.production; # stable, latest, beta, production, etc.
     #config.boot.kernelPackages.nvidiaPackages.mkDriver {
     #  version = "565.57.01";
@@ -12,7 +12,7 @@ let
 in {
   # Load nvidia driver for Xorg and Wayland
   boot.kernelPackages = pkgs.linuxPackages_latest;
-  
+   
   services.xserver.videoDrivers =
     [ "nvidia" "displayLink" ]; # or "nvidiaLegacy470 etc.
   boot.kernelParams =
