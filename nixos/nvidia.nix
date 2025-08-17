@@ -13,7 +13,7 @@ let
   # 560.x 版驅動在 unstable 的 derivation
   #upstreamDrv = unstablePkgs.linuxPackages_6_12.nvidia_x11;
   #upstreamDrv = unstablePkgs.linuxPackages_latest.nvidiaPackages.latest;
-  upstreamDrv = unstablePkgs.nvidia_x11.open;
+  upstreamDrv = unstablePkgs.nvidiaPackages.latest;
 
 
 
