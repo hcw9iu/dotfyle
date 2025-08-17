@@ -12,8 +12,11 @@ let
   nvidiaDriverChannel = config.boot.kernelPackages.nvidiaPackages.mkDriver {
     version            = upstreamDrv.version;                  # 例：560.42.04
     sha256_64bit       = upstreamDrv.src.outputHash;
-    settingsSha256     = upstreamDrv.settings.src.outputHash;
+
+    #settingsSha256     = upstreamDrv.settings.src.outputHash;
     persistencedSha256 = upstreamDrv.persistenced.src.outputHash;
+    sha256_32bit        = null;
+    settingsSha256      = null;
   };
 in {
   # Load nvidia driver for Xorg and Wayland
