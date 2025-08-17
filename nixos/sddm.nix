@@ -4,7 +4,8 @@
 }: {
   services.displayManager.sddm = {
     enable         = true;          # 開啟 SDDM
-    wayland.enable = true;          # 同時支援 Wayland
+    package = pkgs.libsForQt5.sddm;
+    #wayland.enable = true;          # 同時支援 Wayland
     #theme          = "sugar-candy";
   };
 
