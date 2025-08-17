@@ -1,14 +1,14 @@
 { lib, pkgs, config, ... }:
 let
-  #nvidiaDriverChannel =
+  nvidiaDriverChannel =
     #config.boot.kernelPackages.nvidiaPackages.production; # stable, latest, beta, production, etc.
-    #config.boot.kernelPackages.nvidiaPackages.mkDriver {
-    #  version = "565.57.01";
-    #  sha256_64bit  = "0yic33xx1b3jbgciphlwh6zqfj21vx9439zm0j45wf2yb17fksvf";
-    #  settingsSha256 = "1v8z8c895gvvr2y3974iahjpll8wjimv6w4g4qc9h460qhwc3k2b";
-    #  persistencedSha256 = "1qpsrmxz3y741qh4x91qbrkkc0x8hnifp7pfrsxmwnwf796r2904";
-    #};
-    nvidiaDriverChannel = pkgs.linuxPackages_latest.nvidiaPackages.latest;
+    config.boot.kernelPackages.nvidiaPackages.mkDriver {
+      version = "565.57.01";
+      sha256_64bit  = "0yic33xx1b3jbgciphlwh6zqfj21vx9439zm0j45wf2yb17fksvf";
+      settingsSha256 = "1v8z8c895gvvr2y3974iahjpll8wjimv6w4g4qc9h460qhwc3k2b";
+      persistencedSha256 = "1qpsrmxz3y741qh4x91qbrkkc0x8hnifp7pfrsxmwnwf796r2904";
+    };
+    #nvidiaDriverChannel = pkgs.linuxPackages_latest.nvidiaPackages.latest;
 in {
   # Load nvidia driver for Xorg and Wayland
   #boot.kernelPackages = pkgs.linuxPackages_latest;
