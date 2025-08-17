@@ -6,13 +6,14 @@ let
 
   # 560.x 版驅動在 unstable 的 derivation
   #upstreamDrv = unstablePkgs.linuxPackages_latest.nvidia_x11;
-  upstreamDrv = unstablePkgs.linuxPackages_6_12.nvidiaPackages.570;
+  upstreamDrv = unstablePkgs.linuxPackages_6_12.nvidiaPackages;
 
 
 
   # 以目前 kernelPackages 為基礎，重新 build 與核心相容的驅動
   nvidiaDriverChannel = config.boot.kernelPackages.nvidiaPackages.mkDriver {
-    version            = upstreamDrv.version;                  # 例：560.42.04
+    #version            = upstreamDrv.version;                  # 例：560.42.04
+    version            = 565.77;
     sha256_64bit       = upstreamDrv.src.outputHash;
 
     #settingsSha256     = upstreamDrv.settings.src.outputHash;
