@@ -24,6 +24,11 @@
       flake = false;
     };
 
+    kernel-src = {
+      url = "github:nixos/nixpkgs/nixos-unstable";
+      flake = false;
+    };
+
     #hyprspace = { url = "github:KZDKM/Hyprspace"; }; # fork
     #hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1"; # fork
     #hyprpolkitagent.url = "github:hyprwm/hyprpolkitagent"; # fork
@@ -114,6 +119,12 @@
                   #in {
                     #nvidia-open = up.linuxPackages_latest.nvidiaPackages.latest.open;
                   #})
+                  (final: prev:
+                    let
+                      kpkgs = import inputs."kernel-src" { system = prev.system; };
+                    in {
+                      linuxPackages_6_16 = kpkgs.linuxPackages_latest;   # 目前 latest = 6.16.x
+                    })
               ];
               _module.args = { inherit inputs; };
             }  
