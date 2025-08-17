@@ -1,62 +1,47 @@
-{ lib, pkgs, config, inputs, ... }:
+{ lib, pkgs, config, ... }:
 
 let
-  # 只用來拿最新版 NVIDIA 套件的 nixpkgs
-  unstablePkgs = import inputs."nvidia-src" { system = pkgs.system; };
+  nvidiaDrv = config.boot.kernelPackages.nvidiaPackages.mkDriver {
+    version             = "565.77";
+    useOpenKernelModule = true;   # 必開：RTX 50 系列只認 OKM
 
-  # 560 系列 open-kernel 版驅動（OKM）
-  upstreamDrv = unstablePkgs.linuxPackages_6_12.nvidiaPackages_560.open;
+    # 64-bit 主驅動檔 .run
+    sha256_64bit         = "sha256-3o0z0ZYmEWlNgH6b6w7TjV7n6tp/hmX3Dgwrqen+o5Y=";
+    # 32-bit、settings 皆省略
+    sha256_32bit         = null;
+    settingsSha256       = null;
 
-in {
-  # ---------------------------------------------------------
-  # 基本 X11 / Wayland 驅動設定
-  # ---------------------------------------------------------
-  services.xserver.videoDrivers = [ "nvidia" ];
-
-  boot.kernelParams = lib.optionals (lib.elem "nvidia" config.services.xserver.videoDrivers) [
-    "nvidia-drm.modeset=1"
-    "nvidia_drm.fbdev=1"
-    "nvidia.NVreg_PreserveVideoMemoryAllocations=1"
-  ];
-
-  environment.variables = {
-    LIBVA_DRIVER_NAME         = "nvidia";
-    __GLX_VENDOR_LIBRARY_NAME = "nvidia";
-    NVD_BACKEND               = "direct";
-    # GBM_BACKEND = "nvidia-drm";  # 若 Wayland 程式仍當掉再打開
+    # nvidia-persistenced
+    persistencedSha256   = "sha256-gdkxArLh8NRldMEy7RGrGdqst0b9+V1HBqI8M7JMOfw=";
   };
-
-  # ---------------------------------------------------------
-  # 允許安裝 unfree 套件並接受 NVIDIA 授權
-  # ---------------------------------------------------------
+in
+{
+  # 允許 unfree 套件並接受 NVIDIA 授權
   nixpkgs.config = {
     allowUnfree        = true;
     nvidia.acceptLicense = true;
   };
 
-  # ---------------------------------------------------------
-  # NVIDIA 與 OpenGL 套件
-  # ---------------------------------------------------------
+  services.xserver.videoDrivers = [ "nvidia" ];
+
+  boot.kernelParams = [
+    "nvidia-drm.modeset=1"
+    "nvidia.NVreg_PreserveVideoMemoryAllocations=1"
+  ];
+
   hardware = {
     nvidia = {
-      open               = true;          # 使用 Open Kernel Modules
+      open               = true;     # Open Kernel Module
       modesetting.enable = true;
-      powerManagement.enable = true;
-      nvidiaSettings     = false;         # 省去 GTK3 編譯
-      package            = upstreamDrv;   # ← 關鍵：直接用 560 open 版 attrset
+      nvidiaSettings     = false;    # 不編 GTK UI
+      package            = nvidiaDrv;
     };
 
     opengl = {
       enable          = true;
       driSupport32Bit = true;
-      package         = upstreamDrv;
-      extraPackages   = with pkgs; [
-        egl-wayland
-        nvidia-vaapi-driver
-        vaapiVdpau
-        libvdpau-va-gl
-        mesa
-      ];
+      package         = nvidiaDrv;
+      extraPackages   = with pkgs; [ egl-wayland ];
     };
   };
 }
