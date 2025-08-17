@@ -1,24 +1,24 @@
 { pkgs, config, ... }:
 
 let
-  nvidiaDriver = config.boot.kernelPackages.nvidiaPackages.beta;  # 565 或 550 皆可
+  nvidiaDriver = config.boot.kernelPackages.nvidiaPackages.beta;
 in {
-  # 同時載入 amdgpu+nvidia 模組，PRIME 會自動切 GPU
-  services.xserver.videoDrivers = [ "nvidia" "amdgpu" ];
+  # 只載入 nvidia driver
+  services.xserver.videoDrivers = [ "nvidia" ];
 
   boot = {
     kernelParams = [
       "nvidia-drm.modeset=1"
       "nvidia.NVreg_PreserveVideoMemoryAllocations=1"
     ];
-    blacklistedKernelModules = [ "nouveau" ];
+    # 若想徹底不讓 iGPU 驅動載入，可一起封鎖
+    blacklistedKernelModules = [ "nouveau" "amdgpu" "radeon" ];
   };
 
   environment.variables = {
     GBM_BACKEND               = "nvidia-drm";
     __GLX_VENDOR_LIBRARY_NAME = "nvidia";
     LIBVA_DRIVER_NAME         = "nvidia";
-    WLR_NO_HARDWARE_CURSORS   = "1";   # 如無游標問題可移除
     NIXOS_OZONE_WL            = "1";
     MOZ_ENABLE_WAYLAND        = "1";
   };
@@ -35,38 +35,19 @@ in {
       powerManagement.enable = true;
       modesetting.enable     = true;
       package                = nvidiaDriver;
-
-      prime = {
-        offload.enable         = true;
-        offload.enableOffloadCmd = true;
-        sync.enable            = false;
-        # 若確定 BusId 固定，再設定，否則可省略交由 kernel 自判
-        # amdgpuBusId = "PCI:5:0:0";
-        # nvidiaBusId = "PCI:1:0:0";
-      };
+      # 移除 prime 區段 → 完全不啟用 iGPU
     };
 
     opengl = {
       enable          = true;
       driSupport32Bit = true;
       package         = nvidiaDriver;
-      extraPackages   = with pkgs; [
-        egl-wayland
-        nvidia-vaapi-driver
-      ];
+      extraPackages   = with pkgs; [ egl-wayland ];
     };
-  };
-
-  nix.settings = {
-    substituters = [ "https://cuda-maintainers.cachix.org" ];
-    trusted-public-keys = [
-      "cuda-maintainers.cachix.org-1:0dq3bujKpuEPMCX6U4WylrUDZ9JyUG0VpVZa7CNfq5E="
-    ];
   };
 
   environment.systemPackages = with pkgs; [
     vulkan-tools
     glxinfo
-    libva-utils
   ];
 }
