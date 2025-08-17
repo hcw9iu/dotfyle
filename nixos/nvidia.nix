@@ -64,7 +64,7 @@ in {
       ];
     };
   };
-  environment.systemPackages = [
-    (import inputs."nvidia-src" { system = pkgs.system; }).nvidia-settings
-  ];
+  #environment.systemPackages = [
+    #(import inputs."nvidia-src" { system = pkgs.system; }).nvidia-settings
+  #];
 }
