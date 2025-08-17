@@ -7,7 +7,7 @@
 }: let
   foreground = config.theme.textColorOnWallpaper;
   #sddm-astronaut = pkgs.sddm-astronaut.override {
-  sddmAstronaut = pkgs.libsForQt5.sddm-astronaut.override {
+  sddmAstronaut = pkgs.sddm-astronaut-theme.override {
     embeddedTheme = "pixel_sakura";
     themeConfig = {
       HeaderTextColor = "#${foreground}";
