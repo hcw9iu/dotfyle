@@ -15,8 +15,8 @@ let
 
     #settingsSha256     = upstreamDrv.settings.src.outputHash;
     persistencedSha256 = upstreamDrv.persistenced.src.outputHash;
-    sha256_32bit        = null;
-    settingsSha256      = null;
+    #sha256_32bit        = null;
+    #settingsSha256      = null;
   };
 in {
   # Load nvidia driver for Xorg and Wayland
