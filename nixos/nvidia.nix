@@ -1,74 +1,61 @@
-{ lib, pkgs, config, ... }:
+{ lib, pkgs, config, inputs, ... }:
+
 let
-  nvidiaDriverChannel =
-    #config.boot.kernelPackages.nvidiaPackages.production; # stable, latest, beta, production, etc.
-    config.boot.kernelPackages.nvidiaPackages.mkDriver {
-      version = "565.77"; #stable
-      sha256_64bit       = "0z0lncf3q4ndf16k928vpjrzvc9xgg8h494qcvbk9kvbqi1afyha";
-      sha256_32bit       = "0z0lncf3q4ndf16k928vpjrzvc9xgg8h494qcvbk9kvbqi1afyha";
-      #settingsSha256     = "0jds62i0pymn1riklkfdhq1jwzip0brhv0qz5kzjqfg5fa7ssism";
-      persistencedSha256 = "031b583hndq5c9c93j6py6yzxhkf08yz9ac16iywf3vx9w5y6w62";
-    };
-    #nvidiaDriverChannel = pkgs.linuxPackages_latest.nvidiaPackages.latest;
+  # 只用來拿最新版 NVIDIA 套件的 nixpkgs
+  unstablePkgs = import inputs."nvidia-src" { system = pkgs.system; };
+
+  # 560 系列 open-kernel 版驅動（OKM）
+  upstreamDrv = unstablePkgs.linuxPackages_latest.nvidiaPackages_560.open;
+
 in {
-  # Load nvidia driver for Xorg and Wayland
-  #boot.kernelPackages = pkgs.linuxPackages_latest;
-   
-  services.xserver.videoDrivers =
-    [ "nvidia" "displayLink" ]; # or "nvidiaLegacy470 etc.
-  boot.kernelParams =
-    lib.optionals (lib.elem "nvidia" config.services.xserver.videoDrivers) [
-      "nvidia-drm.modeset=1"
-      "nvidia_drm.fbdev=1"
-      "nvidia.NVreg_PreserveVideoMemoryAllocations=1"
-    ];
+  # ---------------------------------------------------------
+  # 基本 X11 / Wayland 驅動設定
+  # ---------------------------------------------------------
+  services.xserver.videoDrivers = [ "nvidia" ];
+
+  boot.kernelParams = lib.optionals (lib.elem "nvidia" config.services.xserver.videoDrivers) [
+    "nvidia-drm.modeset=1"
+    "nvidia_drm.fbdev=1"
+    "nvidia.NVreg_PreserveVideoMemoryAllocations=1"
+  ];
+
   environment.variables = {
-    # GBM_BACKEND = "nvidia-drm"; # If crash in firefox, remove this line
-    LIBVA_DRIVER_NAME = "nvidia"; # hardware acceleration
+    LIBVA_DRIVER_NAME         = "nvidia";
     __GLX_VENDOR_LIBRARY_NAME = "nvidia";
-    NVD_BACKEND = "direct";
+    NVD_BACKEND               = "direct";
+    # GBM_BACKEND = "nvidia-drm";  # 若 Wayland 程式仍當掉再打開
   };
+
+  # ---------------------------------------------------------
+  # 允許安裝 unfree 套件並接受 NVIDIA 授權
+  # ---------------------------------------------------------
   nixpkgs.config = {
+    allowUnfree        = true;
     nvidia.acceptLicense = true;
-    allowUnfreePredicate = pkg:
-      builtins.elem (lib.getName pkg) [
-        "cudatoolkit"
-        "nvidia-persistenced"
-        "nvidia-settings"
-        "nvidia-x11"
-      ];
   };
+
+  # ---------------------------------------------------------
+  # NVIDIA 與 OpenGL 套件
+  # ---------------------------------------------------------
   hardware = {
     nvidia = {
-      open = false;
-      nvidiaSettings = false;
-      powerManagement.enable =
-        true; # This can cause sleep/suspend to fail and saves entire VRAM to /tmp/
+      open               = true;          # 使用 Open Kernel Modules
       modesetting.enable = true;
-      package = nvidiaDriverChannel;
+      powerManagement.enable = true;
+      nvidiaSettings     = false;         # 省去 GTK3 編譯
+      package            = upstreamDrv;   # ← 關鍵：直接用 560 open 版 attrset
     };
-    #graphics = {
-      #enable = true;
-      #package = nvidiaDriverChannel;
-      #enable32Bit = true;
-      #extraPackages = with pkgs; [
-        #nvidia-vaapi-driver
-        #vaapiVdpau
-        #libvdpau-va-gl
-        #mesa
-        #egl-wayland
-      #];
-    #};
+
     opengl = {
-      enable = true;
+      enable          = true;
       driSupport32Bit = true;
-      package = nvidiaDriverChannel;
-      extraPackages = with pkgs; [
+      package         = upstreamDrv;
+      extraPackages   = with pkgs; [
+        egl-wayland
         nvidia-vaapi-driver
         vaapiVdpau
         libvdpau-va-gl
         mesa
-        egl-wayland
       ];
     };
   };
