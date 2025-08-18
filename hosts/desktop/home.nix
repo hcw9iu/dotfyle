@@ -11,14 +11,14 @@
     ../../home/programs/fetch
     ../../home/programs/git
     #../../home/programs/spicetify
-    ../../home/programs/nextcloud
+    #../../home/programs/nextcloud
     ../../home/programs/yazi
     ../../home/programs/markdown
     ../../home/programs/thunar
     ../../home/programs/lazygit
     #../../home/programs/nh
     ../../home/programs/zen
-    ../../home/programs/server-page
+    #../../home/programs/server-page
 
     # Scripts
     ../../home/scripts # All scripts
