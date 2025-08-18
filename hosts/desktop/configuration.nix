@@ -17,7 +17,7 @@
     ../../nixos/systemd-boot.nix
     ../../nixos/timezone.nix
     #../../nixos/sddm.nix
-    ../../nixos/hyprland.nix
+    #../../nixos/hyprland.nix
     ../../nixos/tuigreet.nix
     ../../nixos/users.nix
     ../../nixos/utils.nix
