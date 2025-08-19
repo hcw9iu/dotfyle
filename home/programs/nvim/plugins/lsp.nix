@@ -22,6 +22,7 @@
         svelte.enable = true;
         marksman.enable = true;
       };
+      servers.ts_query_ls.enable = false;
       keymaps.lspBuf = {
         "gd" = "definition";
         "gD" = "references";
