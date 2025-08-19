@@ -7,7 +7,7 @@
   inputs = {
     #nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     #nixpkgs-24_05.url = "github:nixos/nixpkgs/nixos-24.05";
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11"; 
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11/b134951a4c9f3c995fd7be05f3243f8ecd65d798"; 
     nixos-hardware.url = "github:NixOS/nixos-hardware/master"; 
     nur.url = "github:nix-community/NUR";
     home-manager = {
