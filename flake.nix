@@ -33,7 +33,7 @@
     #hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1"; # fork
     #hyprpolkitagent.url = "github:hyprwm/hyprpolkitagent"; # fork
     #hyprpanel.url = "github:Jas-SinghFSU/HyprPanel"; # fork
-    stylix.url = "github:danth/stylix/release-24.05"; # fork
+    #stylix.url = "github:danth/stylix/release-24.05"; # fork
 
     # atticd
     #attic = {
@@ -76,7 +76,7 @@
       #rev = "10ac1fbf27e6a06329ef4279846a4aaadf7e332b";
       #allRefs = true;
     };
-    #stylix.url = "github:hcw9iu/stylix"; 
+    stylix.url = "github:hcw9iu/stylix"; 
 
     apple-fonts.url = "github:Lyndeno/apple-fonts.nix"; 
   
