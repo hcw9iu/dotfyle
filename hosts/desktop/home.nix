@@ -5,7 +5,7 @@
 
     # Programs
     ../../home/programs/kitty
-    #../../home/programs/nvim
+    ../../home/programs/nvim
     #../../home/programs/qutebrowser
     ../../home/programs/shell
     ../../home/programs/fetch
