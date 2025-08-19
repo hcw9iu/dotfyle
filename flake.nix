@@ -9,8 +9,7 @@
     #nixpkgs-24_05.url = "github:nixos/nixpkgs/nixos-24.05";
     #nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11/"; 
     nixpkgs = {
-      url = "github:nixos/nixpkgs";
-      ref = "nixos-24.11";
+      url = "github:nixos/nixpkgs/nixos-24.11";
       rev = "61b238b594341af3d5f38bfd419d0ae37e700f68";
     };
     nixos-hardware.url = "github:NixOS/nixos-hardware/master"; 
