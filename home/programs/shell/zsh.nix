@@ -1,10 +1,6 @@
 # My shell configuration
 { pkgs, lib, config, ... }:
-let 
-  fetch = config.var.theme.fetch; # neofetch, nerdfetch, pfetch, nitch
-  pkgsUnfree = pkgs // {
-    config = pkgs.config // {allowUnfree=true;};
-  };
+let fetch = config.var.theme.fetch; # neofetch, nerdfetch, pfetch, nitch
 in {
 
   home.packages = with pkgs; [ bat ripgrep tldr sesh ];
@@ -60,12 +56,12 @@ in {
     #nix path-info -r /run/current-system | grep nvidia-x11
     #and 
     #nix search nixpkgs nvidia_x11
-    sessionVariables = {
-      LD_LIBRARY_PATH = lib.concatStringsSep ":" [
-        "${pkgs.linuxPackages_6_16.nvidia_x11_latest}/lib" # change the package name according to nix search result
-        "$LD_LIBRARY_PATH"
-      ];
-    };
+    #sessionVariables = {
+      #LD_LIBRARY_PATH = lib.concatStringsSep ":" [
+        #"${pkgs.linuxPackages_6_16.nvidia_x11_latest}/lib" # change the package name according to nix search result
+        #"$LD_LIBRARY_PATH"
+      #];
+    #};
 
     shellAliases = {
       vim = "nvim";
