@@ -1,6 +1,10 @@
 # My shell configuration
 { pkgs, lib, config, ... }:
-let fetch = config.var.theme.fetch; # neofetch, nerdfetch, pfetch, nitch
+let 
+  fetch = config.var.theme.fetch; # neofetch, nerdfetch, pfetch, nitch
+  pkgsUnfree = pkgs // {
+    config = pkgs.config // {allowUnfree=true;};
+  };
 in {
 
   home.packages = with pkgs; [ bat ripgrep tldr sesh ];
