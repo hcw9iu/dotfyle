@@ -10,7 +10,7 @@ let
     };
   };
 
-  # 560.x 版驅動在 unstable 的 derivation
+  # 580.x 版驅動在 unstable 的 derivation
   #upstreamDrv = unstablePkgs.linuxPackages_6_12.nvidia_x11;
   upstreamDrv = unstablePkgs.linuxPackages_latest.nvidiaPackages.latest;
 
@@ -64,7 +64,8 @@ in {
       package                = upstreamDrv;
     };
 
-    opengl = {
+    #opengl = {
+    graphics = {
       enable          = true;
       driSupport32Bit = true;
       #package         = nvidiaDriverChannel;
