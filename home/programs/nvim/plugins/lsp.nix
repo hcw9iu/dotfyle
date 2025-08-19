@@ -1,4 +1,3 @@
-{pkgs, ...}:
 {
   programs.nixvim.plugins = {
     lsp-format.enable = true;
@@ -22,11 +21,7 @@
         html.enable = true;
         svelte.enable = true;
         marksman.enable = true;
-        ts_query_ls = {
-          enable  = false;                          # 關閉
-          package = pkgs.runCommandNoCC "dummy" {} "";  # 空 derivation
-          cmd     = [ "true" ];                     # ← 關鍵：避免讀 package 路徑
-        };
+
       };
       keymaps.lspBuf = {
         "gd" = "definition";
