@@ -64,13 +64,11 @@ in {
       package                = upstreamDrv;
     };
 
-    #opengl = {
     graphics = {
-      enable          = true;
-      driSupport32Bit = true;
-      #package         = nvidiaDriverChannel;
-      package         = upstreamDrv;
-      extraPackages   = with pkgs; [
+      enable = true;
+      package = upstreamDrv;
+      enable32Bit = true;
+      extraPackages = with pkgs; [
         nvidia-vaapi-driver
         vaapiVdpau
         libvdpau-va-gl
@@ -78,6 +76,20 @@ in {
         egl-wayland
       ];
     };
+
+    #opengl = {
+      #enable          = true;
+      #driSupport32Bit = true;
+      ##package         = nvidiaDriverChannel;
+      #package         = upstreamDrv;
+      #extraPackages   = with pkgs; [
+        #nvidia-vaapi-driver
+        #vaapiVdpau
+        #libvdpau-va-gl
+        #mesa
+        #egl-wayland
+      #];
+    #};
   };
   #environment.systemPackages = [
     #(import inputs."nvidia-src" { system = pkgs.system; }).nvidia-settings
