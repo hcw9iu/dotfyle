@@ -13,7 +13,8 @@
     nur.url = "github:nix-community/NUR";
     home-manager = {
       #url = "github:nix-community/home-manager/release-24.11"; 
-      url = "github:nix-commmunity/home-manager/master/daf04c5950b676f47a794300657f1d3d14c1a120";
+      url = "github:nix-commmunity/home-manager/master";
+      ref = "daf04c5950b676f47a794300657f1d3d14c1a120";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixvim = {
