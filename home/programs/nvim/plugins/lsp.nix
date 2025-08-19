@@ -21,8 +21,11 @@
         html.enable = true;
         svelte.enable = true;
         marksman.enable = true;
+        ts_query_ls = {
+          enable  = false;            # 不啟用
+          package = null;             # 關鍵：避免去找 pkgs.ts_query_ls
+        };
       };
-      servers.ts_query_ls.enable = false;
       keymaps.lspBuf = {
         "gd" = "definition";
         "gD" = "references";
