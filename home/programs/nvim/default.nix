@@ -5,7 +5,7 @@
     #inputs.nixvim.homeModules.nixvim
     ./plugins/cmp.nix
     ./plugins/dashboard.nix
-    #./plugins/lsp.nix
+    ./plugins/lsp.nix
     ./plugins/markdown.nix
     ./plugins/tree.nix
     ./plugins/ui.nix
