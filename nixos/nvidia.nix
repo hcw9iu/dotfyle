@@ -11,8 +11,8 @@ let
   };
 
   # 580.x 版驅動在 unstable 的 derivation
-  #upstreamDrv = unstablePkgs.linuxPackages_6_12.nvidia_x11;
-  upstreamDrv = unstablePkgs.linuxPackages_latest.nvidiaPackages.latest;
+  upstreamDrv = unstablePkgs.linuxPackages_6_12.nvidia_x11;
+  #upstreamDrv = unstablePkgs.linuxPackages_latest.nvidiaPackages.latest;
 
 
 
